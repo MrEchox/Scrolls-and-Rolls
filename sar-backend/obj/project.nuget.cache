@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "THZHuFFlVyI=",
+  "dgSpecHash": "O+u609cln84=",
   "success": true,
-  "projectFilePath": "C:\\Users\\asala\\OneDrive\\Desktop\\7 semestras\\Saitynai\\Scrolls and Rolls\\sar-backend\\sar-backend.csproj",
+  "projectFilePath": "C:\\Users\\asala\\OneDrive\\Desktop\\7 semestras\\Saitynai\\Project\\Scrolls-and-Rolls\\sar-backend\\sar-backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\asala\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\asala\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("sar-backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3715a89728c356a86d1947e4ea7e85a9b1c017fc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9a2cade57f5a60df6bf089c356e00b9401f5825e")]
 [assembly: System.Reflection.AssemblyProductAttribute("sar-backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("sar-backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
