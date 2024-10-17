@@ -1,7 +1,7 @@
 [
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_1",
+    "ContainingType": "SessionEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapSessionEndpoints\u003Eb__0_0",
     "RelativePath": "sessions",
     "HttpMethod": "GET",
     "IsController": false,
@@ -20,8 +20,8 @@
     "Description": "Gets all game sessions."
   },
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_3",
+    "ContainingType": "SessionEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapSessionEndpoints\u003Eb__0_2",
     "RelativePath": "sessions",
     "HttpMethod": "POST",
     "IsController": false,
@@ -46,8 +46,8 @@
     "Description": "Creates a new game session."
   },
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_2",
+    "ContainingType": "SessionEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapSessionEndpoints\u003Eb__0_1",
     "RelativePath": "sessions/{sessionId}",
     "HttpMethod": "GET",
     "IsController": false,
@@ -77,8 +77,8 @@
     "Description": "Gets game session by ID."
   },
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_4",
+    "ContainingType": "SessionEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapSessionEndpoints\u003Eb__0_3",
     "RelativePath": "sessions/{sessionId}",
     "HttpMethod": "PUT",
     "IsController": false,
@@ -113,8 +113,8 @@
     "Description": "Updates a game session by ID."
   },
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_5",
+    "ContainingType": "SessionEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapSessionEndpoints\u003Eb__0_4",
     "RelativePath": "sessions/{sessionId}",
     "HttpMethod": "DELETE",
     "IsController": false,
@@ -142,8 +142,8 @@
     "Description": "Deletes a game session by ID."
   },
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_6",
+    "ContainingType": "CharacterEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapCharacterEndpoints\u003Eb__0_0",
     "RelativePath": "sessions/{sessionId}/characters",
     "HttpMethod": "GET",
     "IsController": false,
@@ -173,8 +173,8 @@
     "Description": "Gets all characters from specified session."
   },
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_8",
+    "ContainingType": "CharacterEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapCharacterEndpoints\u003Eb__0_2",
     "RelativePath": "sessions/{sessionId}/characters",
     "HttpMethod": "POST",
     "IsController": false,
@@ -209,8 +209,8 @@
     "Description": "Creates a new character for specific session."
   },
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_7",
+    "ContainingType": "CharacterEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapCharacterEndpoints\u003Eb__0_1",
     "RelativePath": "sessions/{sessionId}/characters/{characterId}",
     "HttpMethod": "GET",
     "IsController": false,
@@ -245,8 +245,8 @@
     "Description": "Gets character by ID from specified session."
   },
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_9",
+    "ContainingType": "CharacterEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapCharacterEndpoints\u003Eb__0_3",
     "RelativePath": "sessions/{sessionId}/characters/{characterId}",
     "HttpMethod": "PUT",
     "IsController": false,
@@ -291,8 +291,8 @@
     "Description": "Updates a character by ID for specific session."
   },
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_10",
+    "ContainingType": "CharacterEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapCharacterEndpoints\u003Eb__0_4",
     "RelativePath": "sessions/{sessionId}/characters/{characterId}",
     "HttpMethod": "DELETE",
     "IsController": false,
@@ -325,8 +325,8 @@
     "Description": "Deletes a character by ID for specific session."
   },
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_11",
+    "ContainingType": "ItemEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapItemEndpoints\u003Eb__0_6",
     "RelativePath": "sessions/{sessionId}/characters/{characterId}/items",
     "HttpMethod": "GET",
     "IsController": false,
@@ -357,185 +357,13 @@
         "StatusCode": 200
       }
     ],
-    "EndpointName": "GetAllItems",
+    "EndpointName": "GetAllItemsForCharacter",
     "Description": "Gets all items from specified character and session."
   },
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_13",
-    "RelativePath": "sessions/{sessionId}/characters/{characterId}/items",
-    "HttpMethod": "POST",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "sessionId",
-        "Type": "System.Guid",
-        "IsRequired": true
-      },
-      {
-        "Name": "characterId",
-        "Type": "System.Guid",
-        "IsRequired": true
-      },
-      {
-        "Name": "item",
-        "Type": "Item",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Item",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 201
-      },
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 404
-      }
-    ],
-    "EndpointName": "CreateItem",
-    "Description": "Creates a new item for specified character and session."
-  },
-  {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_12",
-    "RelativePath": "sessions/{sessionId}/characters/{characterId}/items/{itemId}",
-    "HttpMethod": "GET",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "sessionId",
-        "Type": "System.Guid",
-        "IsRequired": true
-      },
-      {
-        "Name": "characterId",
-        "Type": "System.Guid",
-        "IsRequired": true
-      },
-      {
-        "Name": "itemId",
-        "Type": "System.Guid",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 404
-      },
-      {
-        "Type": "Item",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      }
-    ],
-    "EndpointName": "GetItemById",
-    "Description": "Gets item by ID from specified character and session."
-  },
-  {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_14",
-    "RelativePath": "sessions/{sessionId}/characters/{characterId}/items/{itemId}",
-    "HttpMethod": "PUT",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "sessionId",
-        "Type": "System.Guid",
-        "IsRequired": true
-      },
-      {
-        "Name": "characterId",
-        "Type": "System.Guid",
-        "IsRequired": true
-      },
-      {
-        "Name": "itemId",
-        "Type": "System.Guid",
-        "IsRequired": true
-      },
-      {
-        "Name": "item",
-        "Type": "Item",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 404
-      },
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 400
-      },
-      {
-        "Type": "Item",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      }
-    ],
-    "EndpointName": "UpdateItem",
-    "Description": "Updates an item for specified character and session."
-  },
-  {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_15",
-    "RelativePath": "sessions/{sessionId}/characters/{characterId}/items/{itemId}",
-    "HttpMethod": "DELETE",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "sessionId",
-        "Type": "System.Guid",
-        "IsRequired": true
-      },
-      {
-        "Name": "characterId",
-        "Type": "System.Guid",
-        "IsRequired": true
-      },
-      {
-        "Name": "itemId",
-        "Type": "System.Guid",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 400
-      },
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ],
-    "EndpointName": "DeleteItem",
-    "Description": "Deletes an item by ID for specified character and session."
-  },
-  {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_16",
-    "RelativePath": "sessions/{sessionId}/characters/{characterId}/items/{itemId}/assign",
+    "ContainingType": "ItemEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapItemEndpoints\u003Eb__0_7",
+    "RelativePath": "sessions/{sessionId}/characters/{characterId}/items/{itemId}/assign/{newCharacterId}",
     "HttpMethod": "POST",
     "IsController": false,
     "Order": 0,
@@ -575,7 +403,231 @@
         "StatusCode": 200
       }
     ],
-    "EndpointName": "AssignItemToCharacter",
+    "EndpointName": "AssignCharacterItemToCharacter",
     "Description": "Assigns an item to a different character in the same (specified) session."
+  },
+  {
+    "ContainingType": "ItemEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapItemEndpoints\u003Eb__0_0",
+    "RelativePath": "sessions/{sessionId}/items",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sessionId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Item, sar-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "GetAllItems",
+    "Description": "Gets all items in a specified session."
+  },
+  {
+    "ContainingType": "ItemEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapItemEndpoints\u003Eb__0_2",
+    "RelativePath": "sessions/{sessionId}/items",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sessionId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "item",
+        "Type": "Item",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Item",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 201
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "CreateItem",
+    "Description": "Creates a new item for specified session."
+  },
+  {
+    "ContainingType": "ItemEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapItemEndpoints\u003Eb__0_1",
+    "RelativePath": "sessions/{sessionId}/items/{itemId}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sessionId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "itemId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      },
+      {
+        "Type": "Item",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetItemById",
+    "Description": "Gets item by ID from specified session."
+  },
+  {
+    "ContainingType": "ItemEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapItemEndpoints\u003Eb__0_3",
+    "RelativePath": "sessions/{sessionId}/items/{itemId}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sessionId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "itemId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "item",
+        "Type": "Item",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Item",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "UpdateItem",
+    "Description": "Updates an item for specified session."
+  },
+  {
+    "ContainingType": "ItemEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapItemEndpoints\u003Eb__0_4",
+    "RelativePath": "sessions/{sessionId}/items/{itemId}",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sessionId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "itemId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 400
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "DeleteItem",
+    "Description": "Deletes an item by ID for specified session."
+  },
+  {
+    "ContainingType": "ItemEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapItemEndpoints\u003Eb__0_5",
+    "RelativePath": "sessions/{sessionId}/items/{itemId}/assign/{characterId}",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sessionId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "itemId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "characterId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      },
+      {
+        "Type": "Item",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "AssignItemToCharacter",
+    "Description": "Assigns an item to a character in the same (specified) session."
   }
 ]

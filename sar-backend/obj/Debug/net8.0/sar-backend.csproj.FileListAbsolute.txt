@@ -135,3 +135,4 @@ C:\Users\asala\OneDrive\Desktop\7 semestras\Saitynai\Scrolls and Rolls\sar-backe
 C:\Users\asala\OneDrive\Desktop\7 semestras\Saitynai\Scrolls and Rolls\sar-backend\obj\Debug\net8.0\sar-backend.pdb
 C:\Users\asala\OneDrive\Desktop\7 semestras\Saitynai\Scrolls and Rolls\sar-backend\obj\Debug\net8.0\sar-backend.genruntimeconfig.cache
 C:\Users\asala\OneDrive\Desktop\7 semestras\Saitynai\Scrolls and Rolls\sar-backend\obj\Debug\net8.0\ref\sar-backend.dll
+C:\Users\asala\OneDrive\Desktop\7 semestras\Saitynai\Scrolls and Rolls\sar-backend\obj\Debug\net8.0\sar-backend.sourcelink.json

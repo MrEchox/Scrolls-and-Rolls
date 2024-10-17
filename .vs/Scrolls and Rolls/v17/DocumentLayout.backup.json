@@ -5,6 +5,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{97CD8252-A2A6-4528-BAD2-BC2E45CF3496}|sar-backend\\sar-backend.csproj|c:\\users\\asala\\onedrive\\desktop\\7 semestras\\saitynai\\scrolls and rolls\\sar-backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{97CD8252-A2A6-4528-BAD2-BC2E45CF3496}|sar-backend\\sar-backend.csproj|solutionrelative:sar-backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97CD8252-A2A6-4528-BAD2-BC2E45CF3496}|sar-backend\\sar-backend.csproj|c:\\users\\asala\\onedrive\\desktop\\7 semestras\\saitynai\\scrolls and rolls\\sar-backend\\endpoints\\characterendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97CD8252-A2A6-4528-BAD2-BC2E45CF3496}|sar-backend\\sar-backend.csproj|solutionrelative:sar-backend\\endpoints\\characterendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97CD8252-A2A6-4528-BAD2-BC2E45CF3496}|sar-backend\\sar-backend.csproj|c:\\users\\asala\\onedrive\\desktop\\7 semestras\\saitynai\\scrolls and rolls\\sar-backend\\data\\mydbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97CD8252-A2A6-4528-BAD2-BC2E45CF3496}|sar-backend\\sar-backend.csproj|solutionrelative:sar-backend\\data\\mydbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +22,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CharacterEndpoints.cs",
+              "DocumentMoniker": "C:\\Users\\asala\\OneDrive\\Desktop\\7 semestras\\Saitynai\\Scrolls and Rolls\\sar-backend\\Endpoints\\CharacterEndpoints.cs",
+              "RelativeDocumentMoniker": "sar-backend\\Endpoints\\CharacterEndpoints.cs",
+              "ToolTip": "C:\\Users\\asala\\OneDrive\\Desktop\\7 semestras\\Saitynai\\Scrolls and Rolls\\sar-backend\\Endpoints\\CharacterEndpoints.cs",
+              "RelativeToolTip": "sar-backend\\Endpoints\\CharacterEndpoints.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHAAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-17T20:23:10.085Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MyDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\asala\\OneDrive\\Desktop\\7 semestras\\Saitynai\\Scrolls and Rolls\\sar-backend\\Data\\MyDbContext.cs",
+              "RelativeDocumentMoniker": "sar-backend\\Data\\MyDbContext.cs",
+              "ToolTip": "C:\\Users\\asala\\OneDrive\\Desktop\\7 semestras\\Saitynai\\Scrolls and Rolls\\sar-backend\\Data\\MyDbContext.cs",
+              "RelativeToolTip": "sar-backend\\Data\\MyDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-17T20:19:30.381Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -24,7 +58,7 @@
               "RelativeDocumentMoniker": "sar-backend\\Program.cs",
               "ToolTip": "C:\\Users\\asala\\OneDrive\\Desktop\\7 semestras\\Saitynai\\Scrolls and Rolls\\sar-backend\\Program.cs",
               "RelativeToolTip": "sar-backend\\Program.cs",
-              "ViewState": "AgIAAMcAAAAAAAAAAAAgwJoBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-03T14:26:17.069Z",
               "EditorCaption": ""
