@@ -1,0 +1,146 @@
+/* Dark theme by default */
+:root {
+  --background-color: #3A4F41;
+  --form-background-color: #2D3E34;
+  --primary-color: #B9314F;
+  --text-color: #D5A18E;
+  --input-background-color: #3A4F41;
+  --input-border-color: #B9314F;
+  --input-text-color: #D5A18E;
+}
+
+/* Global styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-color);
+  font-family: Arial, sans-serif;
+  color: var(--text-color);
+}
+
+/* Form styles */
+.form-container {
+  background-color: var(--form-background-color);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+h1 {
+  color: var(--primary-color);
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: var(--text-color);
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  text-align: left;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid var(--input-border-color);
+  border-radius: 5px;
+  background-color: var(--input-background-color);
+  color: var(--input-text-color);
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: darken(var(--primary-color), 10%);
+}
+
+p {
+  color: var(--primary-color);
+  font-size: 14px;
+}
+
+/* Home styles */
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+}
+
+.session-list {
+    width: 100%;
+    max-width: 600px;
+    background-color: var(--form-background-color);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.session-item {
+    background-color: var(--input-background-color);
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.session-item button {
+    background-color: var(--primary-color);
+}
+
+.create-session {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.edit-button {
+    width: 60px;
+    height: 30px;
+    font-size: 12px;
+}
