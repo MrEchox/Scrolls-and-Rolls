@@ -28,7 +28,9 @@ The game length is determined by the Game Master.
 #### Hierarchy
 Game Session > Characters (including players) > Items/Abilities
 #### Specific API
-Return all players in a session
+Assign item to a character.
+Re-assign item from a character to another character.
+
 
 
 ## Lithuanian
@@ -58,4 +60,5 @@ Prisijungę žaidėjai turi sukurti savo veikėją, naudoti "RNG" arba kauliuko 
 #### Hierarchija
 Žaidimo sesija (Game session) > Veikėjai (Characters) (Įskaitant žaidėjus) > Daiktai/Galios (Items/Abilities)
 #### Konkretus API
-Grąžinti visus žaidėjus sesijoje
+Priskirti daiktą žaidėjui.
+Priskirti žaidėjo turimą daiktą kitam žaidėjui.
