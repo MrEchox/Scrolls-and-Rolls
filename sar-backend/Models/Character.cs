@@ -6,19 +6,21 @@ public class Character
 {
     public Guid CharacterId { get; set; }
     public Guid SessionId { get; set; }
+
+    [Required]
     public Guid UserId { get; set; }
 
+
+    // Character Info
     [Required]
     public string Biography { get; set; }
-
     [Required]
     public bool IsNpc { get; set; }
-
     [Required]
     public string Name { get; set; }
-
     [Required]
     public int Gold { get; set; } = 0;
+
 
     // Stats
     [Required]
@@ -33,6 +35,7 @@ public class Character
     public int Wisdom { get; set; }
     [Required]
     public int Charisma { get; set; }
+
 
     public List<Item> Items { get; set; } = new();
 }

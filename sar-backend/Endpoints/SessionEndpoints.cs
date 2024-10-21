@@ -41,7 +41,8 @@ public static class SessionEndpoints
             var session = new Session
             {
                 SessionId = Guid.NewGuid(),
-                GameMasterName = s.GameMasterName
+                SessionName = s.SessionName,
+                GameMasterId = s.GameMasterId
             };
 
             db.Sessions.Add(session);
@@ -51,6 +52,7 @@ public static class SessionEndpoints
         })
         .WithName("CreateSession")
         .WithDescription("Creates a new game session.")
+        .Accepts<Session>("The session to create.")
         .Produces<Session>(StatusCodes.Status201Created)
         .WithOpenApi();
 
@@ -60,13 +62,15 @@ public static class SessionEndpoints
             var session = await db.Sessions.FindAsync(sessionId);
             if (session == null) return Results.NotFound();
 
-            session.GameMasterName = s.GameMasterName;
+            session.SessionName = s.SessionName;
+            session.GameMasterId = s.GameMasterId;
             await db.SaveChangesAsync();
 
             return Results.Ok(session);
         })
         .WithName("UpdateSession")
         .WithDescription("Updates a game session by ID.")
+        .Accepts<Session>("The session to update.")
         .Produces<Session>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status404NotFound)
         .WithOpenApi();
