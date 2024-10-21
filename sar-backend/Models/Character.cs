@@ -6,6 +6,7 @@ public class Character
 {
     public Guid CharacterId { get; set; }
     public Guid SessionId { get; set; }
+    public Guid UserId { get; set; }
 
     [Required]
     public string Biography { get; set; }
