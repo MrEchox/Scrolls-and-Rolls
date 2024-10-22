@@ -5,6 +5,7 @@ public class Item
 {
     public Guid ItemId { get; set; }
     [Required]
+    [StringLength(20, MinimumLength = 3, ErrorMessage = "Session name must be between 3 and 20 characters.")]
     public string Name { get; set; }
     [Required]
     public string Description { get; set; }

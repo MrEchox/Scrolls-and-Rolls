@@ -16,9 +16,10 @@ public class Message
 
 
     [Required]
+    [RegularExpression("^(Chat|Story)$", ErrorMessage = "Channel must be either 'Chat', or 'Story'.")]
     public string Channel { get; set; } // "Chat" or "Story"
 
 
-    public Session session { get; set; }
-    public User user { get; set; }
+    public Session Session { get; set; }
+    public User User { get; set; }
 }

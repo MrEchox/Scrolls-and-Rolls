@@ -18,7 +18,6 @@ public class Character
     public bool IsNpc { get; set; }
     [Required]
     public string Name { get; set; }
-    [Required]
     public int Gold { get; set; } = 0;
 
 

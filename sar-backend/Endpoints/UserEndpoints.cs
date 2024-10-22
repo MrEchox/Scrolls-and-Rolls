@@ -21,19 +21,6 @@ public static class UserEndpoints
         .Produces(StatusCodes.Status404NotFound)
         .WithOpenApi();
 
-        // Post new user
-        app.MapPost("/users", async (MyDbContext db, User user) =>
-        {
-            db.Users.Add(user);
-            await db.SaveChangesAsync();
-            return Results.Created($"/users/{user.UserId}", user);
-        })
-        .WithName("CreateUser")
-        .WithDescription("Creates a new user.")
-        .Accepts<User>("The user to create.")
-        .Produces<User>(StatusCodes.Status201Created)
-        .WithOpenApi();
-
         // Update user
         app.MapPut("/users/{userId}", async (MyDbContext db, Guid userId, User user) =>
         {
@@ -45,6 +32,7 @@ public static class UserEndpoints
             existingUser.Username = user.Username;
             existingUser.PasswordHash = user.PasswordHash;
             existingUser.Email = user.Email;
+            existingUser.Role = user.Role;
 
             await db.SaveChangesAsync();
 
