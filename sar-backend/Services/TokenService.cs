@@ -1,16 +1,19 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 public class TokenService
 {
     private readonly string _key;
     private readonly string _issuer;
+    private readonly int _expireInMinutes;
 
     public TokenService(IConfiguration configuration)
     {
         _key = configuration["Jwt:Key"];
         _issuer = configuration["Jwt:Issuer"];
+        _expireInMinutes = int.Parse(configuration["Jwt:ExpireInMinutes"]);
     }
 
     public string GenerateToken(User user)
@@ -30,7 +33,7 @@ public class TokenService
             issuer: _issuer,
             audience: _issuer,
             claims: claims,
-            expires: DateTime.Now.AddMinutes(30),
+            expires: DateTime.Now.AddMinutes(_expireInMinutes),
             signingCredentials: creds
         );
 

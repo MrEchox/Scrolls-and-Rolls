@@ -13,10 +13,12 @@ public class Character
 
     // Character Info
     [Required]
+    [StringLength(500, ErrorMessage = "Character biography must be up to 500 characters.")]
     public string Biography { get; set; }
     [Required]
     public bool IsNpc { get; set; }
     [Required]
+    [StringLength(20, MinimumLength = 3, ErrorMessage = "Character name must be between 3 and 20 characters.")]
     public string Name { get; set; }
     public int Gold { get; set; } = 0;
 

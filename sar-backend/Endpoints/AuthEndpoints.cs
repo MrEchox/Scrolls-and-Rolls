@@ -16,7 +16,7 @@ public static class AuthEndpoints
                 Username = userDto.Username,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(userDto.Password),
                 Email = userDto.Email,
-                Role = UserRole.Player
+                Role = UserRole.Player // Default role
             };
 
             await db.Users.AddAsync(user);
@@ -30,7 +30,8 @@ public static class AuthEndpoints
         .Produces<User>(StatusCodes.Status201Created)
         .Produces(StatusCodes.Status409Conflict)
         .WithOpenApi();
-    
+
+        // Login user
         app.MapPost("/auth/login", async (MyDbContext db, UserLoginDto userDto) =>
         {
             var user = await db.Users
@@ -41,7 +42,16 @@ public static class AuthEndpoints
             if (!BCrypt.Net.BCrypt.Verify(userDto.Password, user.PasswordHash))
                 return Results.Unauthorized();
 
-            var token = 
+            var token = new TokenService(app.Configuration).GenerateToken(user);
+
+            return Results.Ok(token);
         })
+        .WithName("LoginUser")
+        .WithDescription("Logs in a user.")
+        .Accepts<UserLoginDto>("The user to login.")
+        .Produces<string>(StatusCodes.Status200OK)
+        .Produces(StatusCodes.Status401Unauthorized)
+        .Produces(StatusCodes.Status404NotFound)
+        .WithOpenApi();
     }
 }
