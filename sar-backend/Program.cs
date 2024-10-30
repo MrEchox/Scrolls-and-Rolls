@@ -21,19 +21,32 @@ builder.Services.AddDbContext<MyDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 // Configure JWT
-var key = Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("SARJwtKey"));
+var key = Environment.GetEnvironmentVariable("SARJwtKey");
+if (string.IsNullOrEmpty(key))
+{
+    throw new InvalidOperationException("No JWT key found in environment variables.");
+}
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(key),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)),
             ValidateIssuer = false,
             ValidateAudience = false,
             ValidateLifetime = true
         };
     });
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("Player", policy => policy.RequireRole("Player"));
+    options.AddPolicy("GameMaster", policy => policy.RequireRole("GameMaster"));
+    options.AddPolicy("LoggedIn", policy => policy.RequireAuthenticatedUser());
+
+});
 
 var app = builder.Build();
 
@@ -46,8 +59,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Add authentication and authorization middleware
-app.UseAuthentication(); // Ensure authentication is added before authorization
+// Authentication and authorization middleware
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapUserEndpoints();
@@ -55,5 +68,6 @@ app.MapMessageEndpoints();
 app.MapSessionEndpoints();
 app.MapCharacterEndpoints();
 app.MapItemEndpoints();
+app.MapAuthEndpoints();
 
 app.Run();

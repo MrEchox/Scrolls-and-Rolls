@@ -13,7 +13,7 @@ public class User
     [EmailAddress]
     public string Email { get; set; }
 
-
-    [EnumDataType(typeof(UserRole), ErrorMessage = "Role must be either 'Admin', 'Game Master', or 'Player' enumeration.")]
-    public UserRole Role { get; set; } // Admin, Game Master, Player
+    [Required]
+    [RegularExpression(@"^(Admin|GameMaster|Player)$", ErrorMessage = "Role must be either 'Admin' or 'Player'.")]
+    public string Role { get; set; } // Admin, Game Master, Player
 }

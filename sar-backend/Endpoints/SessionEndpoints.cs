@@ -16,6 +16,7 @@ public static class SessionEndpoints
         .WithName("GetAllSessions")
         .WithDescription("Gets all game sessions.")
         .Produces<Session>(StatusCodes.Status200OK)
+        .RequireAuthorization("Admin")
         .WithOpenApi();
 
         // Get specific session
@@ -33,6 +34,7 @@ public static class SessionEndpoints
         .WithDescription("Gets game session by ID.")
         .Produces<Session>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status404NotFound)
+        .RequireAuthorization("LoggedIn")
         .WithOpenApi();
 
         // Create session
@@ -54,6 +56,7 @@ public static class SessionEndpoints
         .WithDescription("Creates a new game session.")
         .Accepts<Session>("The session to create.")
         .Produces<Session>(StatusCodes.Status201Created)
+        .RequireAuthorization("GameMaster")
         .WithOpenApi();
 
         // Update session
@@ -73,6 +76,7 @@ public static class SessionEndpoints
         .Accepts<Session>("The session to update.")
         .Produces<Session>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status404NotFound)
+        .RequireAuthorization("Admin")
         .WithOpenApi();
 
         // Delete session
@@ -90,6 +94,7 @@ public static class SessionEndpoints
         .WithDescription("Deletes a game session by ID.")
         .Produces(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status404NotFound)
+        .RequireAuthorization(new[] {"Admin", "GameMaster"})
         .WithOpenApi();
     }
 }

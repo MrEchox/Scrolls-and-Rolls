@@ -9,7 +9,7 @@ public static class MessageEndpoints
         app.MapGet("/sessions/{sessionId}/messages", async (MyDbContext db, Guid sessionId) =>
         {
             var messages = await db.Messages
-                                 .Include(m => m.user)
+                                 .Include(m => m.UserId)
                                  .Where(m => m.SessionId == sessionId)
                                  .ToListAsync();
             return Results.Ok(messages);
@@ -18,13 +18,14 @@ public static class MessageEndpoints
         .WithDescription("Gets all messages in a session.")
         .Produces<Message>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status404NotFound)
+        .RequireAuthorization("LoggedIn")
         .WithOpenApi();
 
         // Get all messages in a session from a specific user
         app.MapGet("/sessions/{sessionId}/messages/{userId}", async (MyDbContext db, Guid sessionId, Guid userId) =>
         {
             var messages = await db.Messages
-                                 .Include(m => m.user)
+                                 .Include(m => m.UserId)
                                  .Where(m => m.SessionId == sessionId && m.UserId == userId)
                                  .ToListAsync();
             return Results.Ok(messages);
@@ -46,6 +47,7 @@ public static class MessageEndpoints
         .WithDescription("Creates a new message.")
         .Accepts<Message>("The message to create.")
         .Produces<Message>(StatusCodes.Status201Created)
+        .RequireAuthorization("LoggedIn")
         .WithOpenApi();
     }
 }

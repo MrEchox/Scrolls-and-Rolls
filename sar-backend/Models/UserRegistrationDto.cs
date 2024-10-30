@@ -14,5 +14,9 @@ public class UserRegistrationDto
     [Required]
     [EmailAddress(ErrorMessage = "Invalid email format.")]
     public string Email { get; set; }
+
+    [Required]
+    [RegularExpression(@"^(Admin|GameMaster|Player)$", ErrorMessage = "Role must be either 'Admin' or 'Player'.")]
+    public string Role { get; set; }
 }
 

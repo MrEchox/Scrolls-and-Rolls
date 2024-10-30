@@ -19,6 +19,7 @@ public static class UserEndpoints
         .WithDescription("Gets game session by ID.")
         .Produces<Session>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status404NotFound)
+        .RequireAuthorization("LoggedIn")
         .WithOpenApi();
 
         // Update user
@@ -43,6 +44,7 @@ public static class UserEndpoints
         .Accepts<User>("The user to update.")
         .Produces<User>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status404NotFound)
+        .RequireAuthorization("LoggedIn")
         .WithOpenApi();
 
         // Delete user
@@ -62,6 +64,7 @@ public static class UserEndpoints
         .WithDescription("Deletes a user.")
         .Produces(StatusCodes.Status204NoContent)
         .Produces(StatusCodes.Status404NotFound)
+        .RequireAuthorization("LoggedIn")
         .WithOpenApi();
     }
 }

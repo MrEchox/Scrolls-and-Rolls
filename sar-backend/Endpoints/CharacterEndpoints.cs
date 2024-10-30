@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 public static class CharacterEndpoints
 {
@@ -21,6 +22,7 @@ public static class CharacterEndpoints
         .WithDescription("Gets all characters from specified session.")
         .Produces<Character>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status404NotFound)
+        .RequireAuthorization("Admin")
         .WithOpenApi();
 
         // Get specific character
@@ -38,6 +40,7 @@ public static class CharacterEndpoints
         .WithDescription("Gets character by ID from specified session.")
         .Produces<Character>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status404NotFound)
+        .RequireAuthorization("LoggedIn")
         .WithOpenApi();
 
         // Create character
@@ -58,6 +61,7 @@ public static class CharacterEndpoints
         .WithDescription("Creates a new character for specific session.")
         .Produces<Character>(StatusCodes.Status201Created)
         .Produces(StatusCodes.Status404NotFound)
+        .RequireAuthorization("LoggedIn")
         .WithOpenApi();
 
         // Update character
@@ -91,6 +95,7 @@ public static class CharacterEndpoints
         .Produces<Character>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status400BadRequest)
         .Produces(StatusCodes.Status404NotFound)
+        .RequireAuthorization("LoggedIn")
         .WithOpenApi();
 
         // Delete character
@@ -110,6 +115,7 @@ public static class CharacterEndpoints
         .WithDescription("Deletes a character by ID for specific session.")
         .Produces(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status404NotFound)
+        .RequireAuthorization("LoggedIn")
         .WithOpenApi();
     }
 }

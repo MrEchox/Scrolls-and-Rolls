@@ -2,6 +2,7 @@
 
 public static class ItemEndpoints
 {
+    [Authorize]
     public static void MapItemEndpoints(this WebApplication app)
     {
         app.MapGet("/sessions/{sessionId}/items", (MyDbContext db, Guid sessionId) =>
@@ -15,6 +16,7 @@ public static class ItemEndpoints
         .WithDescription("Gets all items in a specified session.")
         .Produces<List<Item>>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status404NotFound)
+        .RequireAuthorization("LoggedIn")
         .WithOpenApi();
 
         // Get specific item
@@ -29,6 +31,7 @@ public static class ItemEndpoints
         .WithDescription("Gets item by ID from specified session.")
         .Produces(StatusCodes.Status404NotFound)
         .Produces<Item>(StatusCodes.Status200OK)
+        .RequireAuthorization("LoggedIn")
         .WithOpenApi();
 
         // Create item
@@ -50,6 +53,7 @@ public static class ItemEndpoints
         .WithDescription("Creates a new item for specified session.")
         .Produces<Item>(StatusCodes.Status201Created)
         .Produces(StatusCodes.Status404NotFound)
+        .RequireAuthorization(new[] {"Admin", "GameMaster"})
         .WithOpenApi();
 
         // Update item
@@ -81,6 +85,7 @@ public static class ItemEndpoints
         .Produces(StatusCodes.Status404NotFound)
         .Produces(StatusCodes.Status400BadRequest)
         .Produces<Item>(StatusCodes.Status200OK)
+        .RequireAuthorization(new[] {"Admin", "GameMaster"})
         .WithOpenApi();
 
         // Delete item
@@ -113,6 +118,7 @@ public static class ItemEndpoints
         .WithDescription("Deletes an item by ID for specified session.")
         .Produces(StatusCodes.Status400BadRequest)
         .Produces(StatusCodes.Status200OK)
+        .RequireAuthorization(new[] {"Admin", "GameMaster"})
         .WithOpenApi();
 
         // Assign item to character
@@ -145,6 +151,7 @@ public static class ItemEndpoints
         .WithDescription("Assigns an item to a character in the same (specified) session.")
         .Produces(StatusCodes.Status404NotFound)
         .Produces<Item>(StatusCodes.Status200OK)
+        .RequireAuthorization(new[] {"Admin", "GameMaster"})
         .WithOpenApi();
 
         // Items for characters ------------------------------------------------
@@ -164,6 +171,7 @@ public static class ItemEndpoints
         .WithDescription("Gets all items from specified character and session.")
         .Produces(StatusCodes.Status404NotFound)
         .Produces<List<Item>>(StatusCodes.Status200OK)
+        .RequireAuthorization("LoggedIn")
         .WithOpenApi();
 
         // Assign item to character from character
@@ -206,6 +214,7 @@ public static class ItemEndpoints
         .WithDescription("Assigns an item to a different character in the same (specified) session.")
         .Produces(StatusCodes.Status404NotFound)
         .Produces<Item>(StatusCodes.Status200OK)
+        .RequireAuthorization(new[] {"Admin", "GameMaster"})
         .WithOpenApi();
     }
 }
