@@ -2,7 +2,6 @@
 
 public static class ItemEndpoints
 {
-    [Authorize]
     public static void MapItemEndpoints(this WebApplication app)
     {
         app.MapGet("/sessions/{sessionId}/items", (MyDbContext db, Guid sessionId) =>
