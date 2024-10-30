@@ -78,11 +78,6 @@ This API provides functionality for managing user accounts and game sessions in 
   - `PUT /api/characters/{id}`: Update a character. **Authorization**: Player or Game Master.
   - `DELETE /api/characters/{id}`: Delete a character. **Authorization**: Player or Game Master.
 
-#### Game Actions
-- **Endpoints**:
-  - `POST /api/sessions/{id}/roll`: Roll dice for a specific session. **Authorization**: Player.
-  - `POST /api/sessions/{id}/perform-action`: Perform an action in a session. **Authorization**: Player.
-
 #### Error Handling
 Responses will include appropriate HTTP status codes and messages for error handling.
 
