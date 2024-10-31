@@ -44,44 +44,49 @@ This API provides functionality for managing user accounts and game sessions in 
 #### Authentication
 - **Method**: JWT
 - **Endpoints**:
-  - `POST /api/auth/register`: Register a new user. **Authorization**: None.
-  - `POST /api/auth/login`: Authenticate a user and return a JWT. **Authorization**: None.
+  - `POST /auth/register`: Register a new user. **Authorization**: None.
+  - `POST /auth/login`: Authenticate a user and return a JWT. **Authorization**: None.
+  - `POST /auth/createadmin`: Create a new admin user. **Authorization**: Admin only.
 
 #### User Management
 - **Endpoints**:
-  - `GET /api/users`: Retrieve all users. **Authorization**: Admin only.
-  - `GET /api/users/{id}`: Retrieve a specific user by ID. **Authorization**: Admin only.
-  - `PUT /api/users/{id}`: Update user details. **Authorization**: Admin only.
-  - `DELETE /api/users/{id}`: Delete a user. **Authorization**: Admin only.
+  - `GET /users`: Retrieve all users. **Authorization**: Admin only.
+  - `GET /users/{userId}`: Retrieve a specific user by ID. **Authorization**: Admin only.
+  - `PUT /users/{userId}`: Update user details. **Authorization**: Admin only.
+  - `DELETE /users/{userId}`: Delete a user. **Authorization**: Admin only.
 
 #### Game Sessions
 - **Endpoints**:
-  - `POST /api/sessions`: Create a new game session. **Authorization**: Game Master only.
-  - `GET /api/sessions`: Retrieve all game sessions. **Authorization**: All authenticated users.
-  - `GET /api/sessions/{id}`: Retrieve a specific session by ID. **Authorization**: All authenticated users.
-  - `PUT /api/sessions/{id}`: Update a game session. **Authorization**: Game Master only.
-  - `DELETE /api/sessions/{id}`: Delete a game session. **Authorization**: Game Master only.
+  - `POST /sessions`: Create a new game session. **Authorization**: Game Master only.
+  - `GET /sessions`: Retrieve all game sessions. **Authorization**: All authenticated users.
+  - `GET /sessions/{sessionId}`: Retrieve a specific session by ID. **Authorization**: All authenticated users.
+  - `PUT /sessions/{sessionId}`: Update a game session. **Authorization**: Game Master only.
+  - `DELETE /sessions/{sessionId}`: Delete a game session. **Authorization**: Game Master only.
 
 #### Item Management
 - **Endpoints**:
-  - `POST /api/items`: Create a new item. **Authorization**: Admin or Game Master.
-  - `GET /api/items`: Retrieve all items. **Authorization**: All authenticated users.
-  - `GET /api/items/{id}`: Retrieve a specific item by ID. **Authorization**: All authenticated users.
-  - `PUT /api/items/{id}`: Update an item. **Authorization**: Admin or Game Master.
-  - `DELETE /api/items/{id}`: Delete an item. **Authorization**: Admin only.
+  - `POST /sessions/{sessionId}/items`: Create a new item in a session. **Authorization**: Admin or Game Master.
+  - `GET /sessions/{sessionId}/items`: Retrieve all items in a session. **Authorization**: All authenticated users.
+  - `GET /sessions/{sessionId}/items/{itemId}`: Retrieve a specific item by ID. **Authorization**: All authenticated users.
+  - `PUT /sessions/{sessionId}/items/{itemId}`: Update an item. **Authorization**: Admin or Game Master.
+  - `DELETE /sessions/{sessionId}/items/{itemId}`: Delete an item. **Authorization**: Admin only.
+  - `POST /sessions/{sessionId}/items/{itemId}/assign/{characterId}`: Assign an item to a character. **Authorization**: Game Master only.
 
 #### Character Management
 - **Endpoints**:
-  - `POST /api/characters`: Create a new character. **Authorization**: Player.
-  - `GET /api/characters`: Retrieve all characters. **Authorization**: Game Master only.
-  - `GET /api/characters/{id}`: Retrieve a specific character by ID. **Authorization**: All authenticated users.
-  - `PUT /api/characters/{id}`: Update a character. **Authorization**: Player or Game Master.
-  - `DELETE /api/characters/{id}`: Delete a character. **Authorization**: Player or Game Master.
+  - `POST /sessions/{sessionId}/characters`: Create a new character in a session. **Authorization**: Player.
+  - `GET /sessions/{sessionId}/characters`: Retrieve all characters in a session. **Authorization**: Game Master only.
+  - `GET /sessions/{sessionId}/characters/{characterId}`: Retrieve a specific character by ID. **Authorization**: All authenticated users.
+  - `PUT /sessions/{sessionId}/characters/{characterId}`: Update a character. **Authorization**: Player or Game Master.
+  - `DELETE /sessions/{sessionId}/characters/{characterId}`: Delete a character. **Authorization**: Player or Game Master.
 
 #### Game Actions
 - **Endpoints**:
-  - `POST /api/sessions/{id}/roll`: Roll dice for a specific session. **Authorization**: Player.
-  - `POST /api/sessions/{id}/perform-action`: Perform an action in a session. **Authorization**: Player.
+  - `GET /sessions/{sessionId}/messages`: Retrieve all messages in a session. **Authorization**: All authenticated users.
+  - `GET /sessions/{sessionId}/messages/{userId}`: Retrieve all messages from a specific user in a session. **Authorization**: All authenticated users.
+  - `POST /sessions/{sessionId}/messages`: Create a new message in a session. **Authorization**: All authenticated users.
+  - `POST /sessions/{sessionId}/roll`: Roll dice for a specific session. **Authorization**: Player.
+  - `POST /sessions/{sessionId}/perform-action`: Perform an action in a session. **Authorization**: Player.
 
 #### Error Handling
 Responses will include appropriate HTTP status codes and messages for error handling.
