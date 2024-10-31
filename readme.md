@@ -85,8 +85,6 @@ This API provides functionality for managing user accounts and game sessions in 
   - `GET /sessions/{sessionId}/messages`: Retrieve all messages in a session. **Authorization**: All authenticated users.
   - `GET /sessions/{sessionId}/messages/{userId}`: Retrieve all messages from a specific user in a session. **Authorization**: All authenticated users.
   - `POST /sessions/{sessionId}/messages`: Create a new message in a session. **Authorization**: All authenticated users.
-  - `POST /sessions/{sessionId}/roll`: Roll dice for a specific session. **Authorization**: Player.
-  - `POST /sessions/{sessionId}/perform-action`: Perform an action in a session. **Authorization**: Player.
 
 #### Error Handling
 Responses will include appropriate HTTP status codes and messages for error handling.
