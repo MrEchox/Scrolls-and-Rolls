@@ -13,8 +13,8 @@ The game length is determined by the Game Master.
 - Creation and suspension of game sessions.
 - Creation, description, and attachment of images for items, abilities, scenario locations, and characters.
 - Dice rolling.
-- Step-by-step gameplay.
 - Communication with other players in the session through a message box.
+- Game Master story telling via a message box.
 
 #### Technologies
 - **Database**: Azure
@@ -34,6 +34,8 @@ The game length is determined by the Game Master.
 #### Specific API
 - Assign item to a character.
 - Re-assign item from a character to another character.
+- Dice roll.
+- 'Admin' role user creation.
 
 ---
 
@@ -80,11 +82,15 @@ This API provides functionality for managing user accounts and game sessions in 
   - `PUT /sessions/{sessionId}/characters/{characterId}`: Update a character. **Authorization**: Player or Game Master.
   - `DELETE /sessions/{sessionId}/characters/{characterId}`: Delete a character. **Authorization**: Player or Game Master.
 
-#### Game Actions
+#### Message Management
 - **Endpoints**:
   - `GET /sessions/{sessionId}/messages`: Retrieve all messages in a session. **Authorization**: All authenticated users.
   - `GET /sessions/{sessionId}/messages/{userId}`: Retrieve all messages from a specific user in a session. **Authorization**: All authenticated users.
   - `POST /sessions/{sessionId}/messages`: Create a new message in a session. **Authorization**: All authenticated users.
+
+#### Gameplay Management
+- **Endpoints**:
+  - `POST /sessions/{sessionId}/diceRoll`:  Rolls dice for the session with specified parameters and returns the results. **Authorization**: All authenticated users.
 
 #### Error Handling
 Responses will include appropriate HTTP status codes and messages for error handling.
