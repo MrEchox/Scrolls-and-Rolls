@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-public class UserRegistrationDto
+public class AdminRegistrationDto
 {
     [Required]
     [StringLength(20, MinimumLength = 3, ErrorMessage = "Username must be between 3 and 20 characters.")]
@@ -14,9 +14,5 @@ public class UserRegistrationDto
     [Required]
     [EmailAddress(ErrorMessage = "Invalid email format.")]
     public string Email { get; set; }
-
-    [Required]
-    [RegularExpression(@"^(Admin|GameMaster|Player)$", ErrorMessage = "Role must be either 'Admin' or 'Player'.")]
-    public string Role { get; set; }
 }
 

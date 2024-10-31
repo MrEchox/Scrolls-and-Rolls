@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 
 public static class UserEndpoints
@@ -25,6 +26,14 @@ public static class UserEndpoints
         // Update user
         app.MapPut("/users/{userId}", async (MyDbContext db, Guid userId, User user) =>
         {
+            var validationResults = new List<ValidationResult>();
+            var validationContext = new ValidationContext(user);
+
+            if (!Validator.TryValidateObject(user, validationContext, validationResults, true))
+            {
+                return Results.BadRequest(validationResults);
+            }
+
             var existingUser = await db.Users
                                 .FirstOrDefaultAsync(u => u.UserId == userId);
 
@@ -43,6 +52,7 @@ public static class UserEndpoints
         .WithDescription("Updates a user.")
         .Accepts<User>("The user to update.")
         .Produces<User>(StatusCodes.Status200OK)
+        .Produces(StatusCodes.Status400BadRequest)
         .Produces(StatusCodes.Status404NotFound)
         .RequireAuthorization("LoggedIn")
         .WithOpenApi();

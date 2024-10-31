@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 public static class CharacterEndpoints
 {
@@ -46,6 +47,14 @@ public static class CharacterEndpoints
         // Create character
         app.MapPost("/sessions/{sessionId}/characters", (MyDbContext db, Guid sessionId, Character character) =>
         {
+            var validationResults = new List<ValidationResult>();
+            var validationContext = new ValidationContext(character);
+
+            if (!Validator.TryValidateObject(character, validationContext, validationResults, true))
+            {
+                return Results.BadRequest(validationResults);
+            }
+
             var session = db.Sessions.FirstOrDefault(s => s.SessionId == sessionId);
             if (session == null) return Results.NotFound();
 
@@ -60,6 +69,7 @@ public static class CharacterEndpoints
         .WithName("CreateCharacter")
         .WithDescription("Creates a new character for specific session.")
         .Produces<Character>(StatusCodes.Status201Created)
+        .Produces(StatusCodes.Status400BadRequest)
         .Produces(StatusCodes.Status404NotFound)
         .RequireAuthorization("LoggedIn")
         .WithOpenApi();
@@ -67,7 +77,13 @@ public static class CharacterEndpoints
         // Update character
         app.MapPut("/sessions/{sessionId}/characters/{characterId}", (MyDbContext db, Guid sessionId, Guid characterId, Character character) =>
         {
-            if (character == null) return Results.BadRequest("Missing character info in body.");
+            var validationResults = new List<ValidationResult>();
+            var validationContext = new ValidationContext(character);
+
+            if (!Validator.TryValidateObject(character, validationContext, validationResults, true))
+            {
+                return Results.BadRequest(validationResults);
+            }
 
             var existingCharacter = db.Characters.FirstOrDefault(c => c.SessionId == sessionId && c.CharacterId == characterId);
 

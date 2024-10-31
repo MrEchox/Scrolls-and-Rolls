@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 
 public static class MessageEndpoints
@@ -39,6 +40,14 @@ public static class MessageEndpoints
         // Post new message
         app.MapPost("/sessions/{sessionId}/messages", async (MyDbContext db, Message message) =>
         {
+            var validationResults = new List<ValidationResult>();
+            var validationContext = new ValidationContext(message);
+
+            if (!Validator.TryValidateObject(message, validationContext, validationResults, true))
+            {
+                return Results.BadRequest(validationResults);
+            }
+
             db.Messages.Add(message);
             await db.SaveChangesAsync();
             return Results.Created($"/sessions/{message.SessionId}/messages/{message.MessageId}", message);
@@ -47,6 +56,7 @@ public static class MessageEndpoints
         .WithDescription("Creates a new message.")
         .Accepts<Message>("The message to create.")
         .Produces<Message>(StatusCodes.Status201Created)
+        .Produces(StatusCodes.Status400BadRequest)
         .RequireAuthorization("LoggedIn")
         .WithOpenApi();
     }

@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSingleton<DiceService>();
 
 var connectionString = Environment.GetEnvironmentVariable("SARDefaultConnection");
 
@@ -69,5 +70,6 @@ app.MapSessionEndpoints();
 app.MapCharacterEndpoints();
 app.MapItemEndpoints();
 app.MapAuthEndpoints();
+app.MapGameplayEndpoints();
 
 app.Run();

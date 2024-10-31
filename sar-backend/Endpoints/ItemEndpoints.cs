@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 public static class ItemEndpoints
 {
@@ -36,8 +37,17 @@ public static class ItemEndpoints
         // Create item
         app.MapPost("/sessions/{sessionId}/items", (MyDbContext db, Guid sessionId, Item item) =>
         {
+            var validationResults = new List<ValidationResult>();
+            var validationContext = new ValidationContext(item);
+
+            if (!Validator.TryValidateObject(item, validationContext, validationResults, true))
+            {
+                return Results.BadRequest(validationResults);
+            }
+
             var session = db.Sessions.FirstOrDefault(s => s.SessionId == sessionId);
             if (session == null) return Results.NotFound();
+
             item.ItemId = Guid.NewGuid();
             item.SessionId = sessionId;
             item.Session = session;
@@ -52,13 +62,20 @@ public static class ItemEndpoints
         .WithDescription("Creates a new item for specified session.")
         .Produces<Item>(StatusCodes.Status201Created)
         .Produces(StatusCodes.Status404NotFound)
+        .Produces(StatusCodes.Status400BadRequest)
         .RequireAuthorization(new[] {"Admin", "GameMaster"})
         .WithOpenApi();
 
         // Update item
         app.MapPut("/sessions/{sessionId}/items/{itemId}", (MyDbContext db, Guid sessionId, Guid itemId, Item item) =>
         {
-            if (item == null) return Results.BadRequest("Missing item info in body.");
+            var validationResults = new List<ValidationResult>();
+            var validationContext = new ValidationContext(item);
+
+            if (!Validator.TryValidateObject(item, validationContext, validationResults, true))
+            {
+                return Results.BadRequest(validationResults);
+            }
 
             var existingItem = db.Items.FirstOrDefault(s => s.SessionId == sessionId && s.ItemId == itemId);
 

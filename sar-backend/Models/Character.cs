@@ -25,16 +25,22 @@ public class Character
 
     // Stats
     [Required]
+    [Range(1, 30, ErrorMessage = "Stat must be between 1 and 30.")]
     public int Dexterity { get; set; }
     [Required]
+    [Range(1, 30, ErrorMessage = "Stat must be between 1 and 30.")]
     public int Strength { get; set; }
     [Required]
+    [Range(1, 30, ErrorMessage = "Stat must be between 1 and 30.")]
     public int Constitution { get; set; }
     [Required]
+    [Range(1, 30, ErrorMessage = "Stat must be between 1 and 30.")]
     public int Intelligence { get; set; }
     [Required]
+    [Range(1, 30, ErrorMessage = "Stat must be between 1 and 30.")]
     public int Wisdom { get; set; }
     [Required]
+    [Range(1, 30, ErrorMessage = "Stat must be between 1 and 30.")]
     public int Charisma { get; set; }
 
 

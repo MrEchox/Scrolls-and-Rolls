@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 
 public static class SessionEndpoints
@@ -40,6 +41,14 @@ public static class SessionEndpoints
         // Create session
         app.MapPost("/sessions", async (MyDbContext db, Session s) =>
         {
+            var validationResults = new List<ValidationResult>();
+            var validationContext = new ValidationContext(s);
+
+            if (!Validator.TryValidateObject(s, validationContext, validationResults, true))
+            {
+                return Results.BadRequest(validationResults);
+            }
+
             var session = new Session
             {
                 SessionId = Guid.NewGuid(),
@@ -56,12 +65,21 @@ public static class SessionEndpoints
         .WithDescription("Creates a new game session.")
         .Accepts<Session>("The session to create.")
         .Produces<Session>(StatusCodes.Status201Created)
+        .Produces(StatusCodes.Status400BadRequest)
         .RequireAuthorization("GameMaster")
         .WithOpenApi();
 
         // Update session
         app.MapPut("/sessions/{sessionId}", async (MyDbContext db, Guid sessionId, Session s) =>
         {
+            var validationResults = new List<ValidationResult>();
+            var validationContext = new ValidationContext(s);
+
+            if (!Validator.TryValidateObject(s, validationContext, validationResults, true))
+            {
+                return Results.BadRequest(validationResults);
+            }
+
             var session = await db.Sessions.FindAsync(sessionId);
             if (session == null) return Results.NotFound();
 
@@ -75,6 +93,7 @@ public static class SessionEndpoints
         .WithDescription("Updates a game session by ID.")
         .Accepts<Session>("The session to update.")
         .Produces<Session>(StatusCodes.Status200OK)
+        .Produces(StatusCodes.Status400BadRequest)
         .Produces(StatusCodes.Status404NotFound)
         .RequireAuthorization("Admin")
         .WithOpenApi();

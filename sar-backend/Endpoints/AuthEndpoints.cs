@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 public static class AuthEndpoints
 {
     private static readonly string[] ValidRoles = { "GameMaster", "Player" };
@@ -9,6 +10,14 @@ public static class AuthEndpoints
         app.MapPost("/auth/register", async (MyDbContext db, UserRegistrationDto userDto) =>
         {
             // Validation
+            var validationResults = new List<ValidationResult>();
+            var validationContext = new ValidationContext(userDto);
+
+            if (!Validator.TryValidateObject(userDto, validationContext, validationResults, true))
+            {
+                return Results.BadRequest(validationResults);
+            }
+
             var existingUser = await db.Users
             .Where(u => u.Email == userDto.Email || u.Username == userDto.Username)
             .Select(u => new { u.Email, u.Username })
@@ -22,8 +31,6 @@ public static class AuthEndpoints
                 if (existingUser.Username == userDto.Username)
                     return Results.Conflict("Username already in use.");
             }
-            if (!ValidRoles.Contains(userDto.Role))
-                return Results.BadRequest("Invalid user role.");
             // ----------------
 
             var user = new User
@@ -69,29 +76,37 @@ public static class AuthEndpoints
         .WithOpenApi();
 
         // Create admin user
-        app.MapPost("/auth/createadmin", async (MyDbContext db, UserRegistrationDto userDto) =>
+        app.MapPost("/auth/createadmin", async (MyDbContext db, AdminRegistrationDto adminDto) =>
         {
             // Validation
+            var validationResults = new List<ValidationResult>();
+            var validationContext = new ValidationContext(adminDto);
+
+            if (!Validator.TryValidateObject(adminDto, validationContext, validationResults, true))
+            {
+                return Results.BadRequest(validationResults);
+            }
+
             var existingUser = await db.Users
-            .Where(u => u.Email == userDto.Email || u.Username == userDto.Username)
+            .Where(u => u.Email == adminDto.Email || u.Username == adminDto.Username)
             .Select(u => new { u.Email, u.Username })
             .FirstOrDefaultAsync();
 
             if (existingUser != null)
             {
-                if (existingUser.Email == userDto.Email)
+                if (existingUser.Email == adminDto.Email)
                     return Results.Conflict("Email already in use.");
 
-                if (existingUser.Username == userDto.Username)
+                if (existingUser.Username == adminDto.Username)
                     return Results.Conflict("Username already in use.");
             }
             // ----------------
 
             var user = new User
             {
-                Username = userDto.Username,
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword(userDto.Password),
-                Email = userDto.Email,
+                Username = adminDto.Username,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(adminDto.Password),
+                Email = adminDto.Email,
                 Role = "Admin"
             };
 
@@ -103,6 +118,7 @@ public static class AuthEndpoints
         .WithName("CreateAdminUser")
         .WithDescription("Creates a new admin user.")
         .Produces<User>(StatusCodes.Status201Created)
+        .Produces(StatusCodes.Status400BadRequest)
         .Produces(StatusCodes.Status409Conflict)
         .RequireAuthorization("Admin")
         .WithOpenApi();
