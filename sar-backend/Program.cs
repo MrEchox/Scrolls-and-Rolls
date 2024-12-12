@@ -29,6 +29,16 @@ if (string.IsNullOrEmpty(key))
     throw new InvalidOperationException("No JWT key found in environment variables.");
 }
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("http://localhost:3000") // Add the allowed origin
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -48,11 +58,6 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("GameMaster", policy => policy.RequireRole("GameMaster"));
     options.AddPolicy("LoggedIn", policy => policy.RequireAuthenticatedUser());
 
-    // TO-DO:
-    // Require claim?
-    // Check how to allow users to edit/remove themselves without admin priveleges
-
-
 });
 
 var app = builder.Build();
@@ -63,6 +68,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(); // Enable CORS
 
 app.UseHttpsRedirection();
 
