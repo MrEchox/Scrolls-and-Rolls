@@ -9,4 +9,5 @@ public class MyDbContext : DbContext
     public DbSet<Item> Items { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<Message> Messages { get; set; }
+    public DbSet<RefreshToken> RefreshTokens { get; set; }
 }

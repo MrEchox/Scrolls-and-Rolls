@@ -10,7 +10,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<DiceService>();
 
-var connectionString = Environment.GetEnvironmentVariable("SARDefaultConnection");
+//var connectionString = Environment.GetEnvironmentVariable("SARDefaultConnection");
+var connectionString = "Server=tcp:sarsqldb.database.windows.net,1433;Initial Catalog=ScrollsAndRollsDB;Persist Security Info=False;User ID=saradmin;Password=Scr0lling!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
 if (string.IsNullOrEmpty(connectionString))
 {
@@ -46,6 +47,11 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("Player", policy => policy.RequireRole("Player"));
     options.AddPolicy("GameMaster", policy => policy.RequireRole("GameMaster"));
     options.AddPolicy("LoggedIn", policy => policy.RequireAuthenticatedUser());
+
+    // TO-DO:
+    // Require claim?
+    // Check how to allow users to edit/remove themselves without admin priveleges
+
 
 });
 

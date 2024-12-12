@@ -65,11 +65,37 @@ public static class AuthEndpoints
                 return Results.Unauthorized();
 
             var token = new TokenService(app.Configuration).GenerateToken(user);
+            var refreshToken = await new TokenService(app.Configuration).GenerateRefreshToken(user, db);
 
-            return Results.Ok(token);
+            return Results.Ok(new {token, refreshToken = refreshToken.RefreshTokenId});
         })
         .WithName("LoginUser")
         .WithDescription("Logs in a user.")
+        .Produces<string>(StatusCodes.Status200OK)
+        .Produces(StatusCodes.Status401Unauthorized)
+        .Produces(StatusCodes.Status404NotFound)
+        .WithOpenApi();
+
+        // Refresh token
+        app.MapPost("/auth/refresh", async (MyDbContext db, RefreshTokenDto refreshTokenDto) =>
+        {
+            var refreshToken = await db.RefreshTokens
+                .FirstOrDefaultAsync(rt => rt.RefreshTokenId == refreshTokenDto.RefreshTokenId);
+            if (refreshToken == null) return Results.NotFound("Refresh token not found.");
+
+            var user = await db.Users
+                .FirstOrDefaultAsync(u => u.UserId == refreshToken.UserId);
+            if (user == null) return Results.NotFound("User not found.");
+
+            if (!new TokenService(app.Configuration).ValidateRefreshToken(db, user, refreshToken))
+                return Results.Unauthorized();
+
+            var token = new TokenService(app.Configuration).GenerateToken(user);
+
+            return Results.Ok(new { token, refreshToken = refreshTokenDto.RefreshTokenId });
+        })
+        .WithName("RefreshToken")
+        .WithDescription("Refreshes a token.")
         .Produces<string>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status401Unauthorized)
         .Produces(StatusCodes.Status404NotFound)

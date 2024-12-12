@@ -54,7 +54,6 @@ public static class MessageEndpoints
         })
         .WithName("CreateMessage")
         .WithDescription("Creates a new message.")
-        .Accepts<Message>("The message to create.")
         .Produces<Message>(StatusCodes.Status201Created)
         .Produces(StatusCodes.Status400BadRequest)
         .RequireAuthorization("LoggedIn")
