@@ -5,7 +5,7 @@ public static class ItemEndpoints
 {
     public static void MapItemEndpoints(this WebApplication app)
     {
-        app.MapGet("/sessions/{sessionId}/items", (MyDbContext db, Guid sessionId) =>
+        app.MapGet("/api/sessions/{sessionId}/items", (MyDbContext db, Guid sessionId) =>
         {
             var session = db.Sessions.Include(s => s.Items).FirstOrDefault(s => s.SessionId == sessionId);
             if (session == null) return Results.NotFound();
@@ -20,7 +20,7 @@ public static class ItemEndpoints
         .WithOpenApi();
 
         // Get specific item
-        app.MapGet("/sessions/{sessionId}/items/{itemId}", (MyDbContext db, Guid sessionId, Guid itemId) =>
+        app.MapGet("/api/sessions/{sessionId}/items/{itemId}", (MyDbContext db, Guid sessionId, Guid itemId) =>
         {
             var item = db.Items.FirstOrDefault(i => i.ItemId == itemId && i.SessionId == sessionId);
             if (item == null) return Results.NotFound();
@@ -35,7 +35,7 @@ public static class ItemEndpoints
         .WithOpenApi();
 
         // Create item
-        app.MapPost("/sessions/{sessionId}/items", (MyDbContext db, Guid sessionId, Item item) =>
+        app.MapPost("/api/sessions/{sessionId}/items", (MyDbContext db, Guid sessionId, Item item) =>
         {
             var validationResults = new List<ValidationResult>();
             var validationContext = new ValidationContext(item);
@@ -56,18 +56,18 @@ public static class ItemEndpoints
             db.SaveChanges();
 
 
-            return Results.Created($"/sessions/{sessionId}/items/{item.ItemId}", item);
+            return Results.Created($"/api/sessions/{sessionId}/items/{item.ItemId}", item);
         })
         .WithName("CreateItem")
         .WithDescription("Creates a new item for specified session.")
         .Produces<Item>(StatusCodes.Status201Created)
         .Produces(StatusCodes.Status404NotFound)
         .Produces(StatusCodes.Status400BadRequest)
-        .RequireAuthorization(new[] {"Admin", "GameMaster"})
+        .RequireAuthorization(new[] {"GameMaster"})
         .WithOpenApi();
 
         // Update item
-        app.MapPut("/sessions/{sessionId}/items/{itemId}", (MyDbContext db, Guid sessionId, Guid itemId, Item item) =>
+        app.MapPut("/api/sessions/{sessionId}/items/{itemId}", (MyDbContext db, Guid sessionId, Guid itemId, Item item) =>
         {
             var validationResults = new List<ValidationResult>();
             var validationContext = new ValidationContext(item);
@@ -101,11 +101,11 @@ public static class ItemEndpoints
         .Produces(StatusCodes.Status404NotFound)
         .Produces(StatusCodes.Status400BadRequest)
         .Produces<Item>(StatusCodes.Status200OK)
-        .RequireAuthorization(new[] {"Admin", "GameMaster"})
+        .RequireAuthorization("GameMaster")
         .WithOpenApi();
 
         // Delete item
-        app.MapDelete("/sessions/{sessionId}/items/{itemId}", (MyDbContext db, Guid sessionId, Guid itemId) =>
+        app.MapDelete("/api/sessions/{sessionId}/items/{itemId}", (MyDbContext db, Guid sessionId, Guid itemId) =>
         {
             var item = db.Items
                         .FirstOrDefault(i => i.SessionId == sessionId && i.ItemId == itemId);
@@ -134,11 +134,11 @@ public static class ItemEndpoints
         .WithDescription("Deletes an item by ID for specified session.")
         .Produces(StatusCodes.Status400BadRequest)
         .Produces(StatusCodes.Status200OK)
-        .RequireAuthorization(new[] {"Admin", "GameMaster"})
+        .RequireAuthorization("GameMaster")
         .WithOpenApi();
 
         // Assign item to character
-        app.MapPost("/sessions/{sessionId}/items/{itemId}/assign/{characterId}", (MyDbContext db, Guid sessionId, Guid itemId, Guid characterId) =>
+        app.MapPut("/api/sessions/{sessionId}/items/{itemId}/assign/{characterId}", (MyDbContext db, Guid sessionId, Guid itemId, Guid characterId) =>
         {
             var item = db.Items.FirstOrDefault(i => i.ItemId == itemId && i.SessionId == sessionId);
             if (item == null) return Results.NotFound("Item not found.");
@@ -167,13 +167,13 @@ public static class ItemEndpoints
         .WithDescription("Assigns an item to a character in the same (specified) session.")
         .Produces(StatusCodes.Status404NotFound)
         .Produces<Item>(StatusCodes.Status200OK)
-        .RequireAuthorization(new[] {"Admin", "GameMaster"})
+        .RequireAuthorization("LoggedIn")
         .WithOpenApi();
 
         // Items for characters ------------------------------------------------
 
         // Get all items for character
-        app.MapGet("/sessions/{sessionId}/characters/{characterId}/items", (MyDbContext db, Guid sessionId, Guid characterId) =>
+        app.MapGet("/api/sessions/{sessionId}/characters/{characterId}/items", (MyDbContext db, Guid sessionId, Guid characterId) =>
         {
             var character = db.Characters
                             .Include(c => c.Items)
@@ -191,7 +191,7 @@ public static class ItemEndpoints
         .WithOpenApi();
 
         // Assign item to character from character
-        app.MapPost("/sessions/{sessionId}/characters/{characterId}/items/{itemId}/assign/{newCharacterId}", (MyDbContext db, Guid sessionId, Guid characterId, Guid itemId, Guid newCharacterId) =>
+        app.MapPut("/api/sessions/{sessionId}/characters/{characterId}/items/{itemId}/assign/{newCharacterId}", (MyDbContext db, Guid sessionId, Guid characterId, Guid itemId, Guid newCharacterId) =>
         {
             // Find the item assigned to the old character
             var item = db.Items.FirstOrDefault(i => i.ItemId == itemId && i.CharacterId == characterId);
@@ -230,7 +230,7 @@ public static class ItemEndpoints
         .WithDescription("Assigns an item to a different character in the same (specified) session.")
         .Produces(StatusCodes.Status404NotFound)
         .Produces<Item>(StatusCodes.Status200OK)
-        .RequireAuthorization(new[] {"Admin", "GameMaster"})
+        .RequireAuthorization("LoggedIn")
         .WithOpenApi();
     }
 }

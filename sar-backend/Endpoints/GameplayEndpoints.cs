@@ -6,7 +6,7 @@ public static class GameplayEndpoints
 {
     public static void MapGameplayEndpoints(this WebApplication app)
     {
-        app.MapPost("/sessions/{sessionId}/diceRoll", async (Guid sessionId, DiceRollDto diceRollDto) =>
+        app.MapPost("/api/sessions/{sessionId}/diceRoll", async (Guid sessionId, DiceRollDto diceRollDto) =>
         {
             var validationResults = new List<ValidationResult>();
             var validationContext = new ValidationContext(diceRollDto);

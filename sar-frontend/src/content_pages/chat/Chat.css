@@ -1,0 +1,93 @@
+/* CSS for Chats */
+.player-chat-box {
+  width: 100%;
+  max-width: 600px; /* You can adjust this based on your layout */
+  height: 400px; /* Fixed height for the PlayerChat */
+  background-color: #999E9B;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Prevents the chat from overflowing outside the box */
+}
+
+.story-chat-box {
+  width: 100%;
+  max-width: 600px; /* You can adjust this based on your layout */
+  height: 400px; 
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Prevents the chat from overflowing outside the box */
+}
+
+.player-chat-box h2, .story-chat-box h2 {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 10px;
+  text-align: center;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto; /* Allows scrolling when there are too many messages */
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.story-messages {
+  flex: 1;
+  overflow-y: auto; /* Allows scrolling when there are too many messages */
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.player-message {
+  background-color: #B5B7B5;
+  padding: 8px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.story-message {
+  background-color: #A6757F;
+  padding: 8px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.timestamp {
+  font-size: 0.8rem;
+  color: #000000;
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-top: 6px solid #ccc;
+}
+
+.input-container input {
+  width: 80%;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+}
+
+.input-container button {
+  width: 15%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #B24C63;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.input-container button:hover {
+  background-color: #903248;
+}

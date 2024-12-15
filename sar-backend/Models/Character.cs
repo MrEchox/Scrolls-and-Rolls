@@ -7,13 +7,12 @@ public class Character
     public Guid CharacterId { get; set; }
     public Guid SessionId { get; set; }
 
-    [Required]
     public Guid UserId { get; set; }
 
 
     // Character Info
     [Required]
-    [StringLength(500, ErrorMessage = "Character biography must be up to 500 characters.")]
+    [StringLength(500, MinimumLength = 3, ErrorMessage = "Character biography must be up to 500 characters.")]
     public string Biography { get; set; }
     [Required]
     public bool IsNpc { get; set; }

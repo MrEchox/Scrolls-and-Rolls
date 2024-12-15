@@ -1,0 +1,256 @@
+/* Base Styles for Desktop */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensures consistent box sizing */
+}
+html, body {
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden; /* Prevents horizontal scroll */
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+
+input {
+    margin: 5px;
+    padding: 2px;
+    background-color: #D0CFCF;
+    border-radius: 7px;
+    border-style: solid;
+}
+
+/* Layout Styles */
+.App {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the app takes at least full height */
+    flex: 1; /* Pushes the footer to the bottom when content is short */
+    padding: 20px;
+    background-color: #D0CFCF; /* Optional background for main content */
+}
+
+.App div {
+    padding-bottom: 10px;
+}
+
+td {
+    padding: 10px;
+}
+
+button {
+    background-color: #626C66;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #aabdb2;
+    color: #626C66;
+}
+
+.content-navlink {
+    color: #626C66;
+    border:#626C66;
+    border-style: solid;
+    background-color: #D0CFCF;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #626C66;
+    color: white;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.header ul {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    gap: 10px;
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.menu-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-direction: row;
+    margin-left: auto; /* Pushes the menu to the far right */
+}
+
+.menu-navlink button, a {
+    background: none;
+    border: #D0CFCF;
+    border-style: solid;
+    border-width: 2px;
+    padding: 2px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.menu-navlink button:hover, a:hover {
+    background-color: #D0CFCF;
+    color: #626C66;
+}
+
+.menu-navlink a {
+    display: inline-flex;
+}
+
+.user-info {
+    font-size: 0.9rem;
+    color: #bbb;
+    margin-left: 20px; /* Add some space between logo/user info */
+}
+
+/* Show hamburger button only on small screens */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    padding: 10px;
+    background: none;
+    border: none;
+    z-index: 10; /* Make sure it's above other elements */
+}
+
+.hamburger-line {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links.open {
+    display: flex; /* Show links when the menu is open */
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #626C66;
+    padding: 10px 0;
+    z-index: 5;
+}
+
+.menu-info {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.main-content {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #626C66;
+    color: white;
+}
+
+.footer-links {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+}
+
+.footer-links li {
+    font-size: 1rem;
+}
+
+.icon {
+    width: 30px; /* Adjust the size as needed */
+    height: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 1000px) {
+    .footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .footer-links {
+        margin-top: 10px;
+        flex-direction: row;
+    }
+
+    .footer-links {
+        flex-direction: column;
+    }
+
+    .footer-links li {
+        font-size: 0.9rem;
+    }
+
+    /* Adjust content padding for smaller screens */
+    .main-content {
+        padding: 10px;
+    }
+
+    /* Reduce font sizes for better readability on smaller devices */
+    body {
+        font-size: 0.9rem;
+    }
+
+    .hamburger {
+        display: flex; /* Show the hamburger menu on small screens */
+    }
+
+    .nav-links {
+        display: none; /* Hide navigation links by default */
+    }
+
+    .nav-links.open {
+        display: flex; /* Show the nav links when hamburger is clicked */
+        padding-right: 10px;
+    }
+
+    .menu-info {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        margin-left: 0;
+    }
+}

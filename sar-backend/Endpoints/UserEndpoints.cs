@@ -9,7 +9,7 @@ public static class UserEndpoints
     public static void MapUserEndpoints(this WebApplication app)
     {
         // Get specific user
-        app.MapGet("/users/{userId}", async (MyDbContext db, Guid userId, HttpContext httpContext) =>
+        app.MapGet("/api/users/{userId}", async (MyDbContext db, Guid userId, HttpContext httpContext) =>
         {
             var userIdClaim = httpContext.User.FindFirst(ClaimTypes.NameIdentifier);
             var userRoleClaim = httpContext.User.FindFirst(ClaimTypes.Role);
@@ -40,7 +40,7 @@ public static class UserEndpoints
         .WithOpenApi();
 
         // Update user
-        app.MapPut("/users/{userId}", async (MyDbContext db, Guid userId, User user, HttpContext httpContext) =>
+        app.MapPut("/api/users/{userId}", async (MyDbContext db, Guid userId, User user, HttpContext httpContext) =>
         {
             var userIdClaim = httpContext.User.FindFirst(ClaimTypes.NameIdentifier);
             var userRoleClaim = httpContext.User.FindFirst(ClaimTypes.Role);
@@ -89,7 +89,7 @@ public static class UserEndpoints
         .WithOpenApi();
 
         // Delete user
-        app.MapDelete("/users/{userId}", async (MyDbContext db, Guid userId, HttpContext httpContext) =>
+        app.MapDelete("/api/users/{userId}", async (MyDbContext db, Guid userId, HttpContext httpContext) =>
         {
             var userIdClaim = httpContext.User.FindFirst(ClaimTypes.NameIdentifier);
             var userRoleClaim = httpContext.User.FindFirst(ClaimTypes.Role);

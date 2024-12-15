@@ -7,7 +7,7 @@ public static class AuthEndpoints
     public static void MapAuthEndpoints(this WebApplication app)
     {
         // Register new user
-        app.MapPost("/auth/register", async (MyDbContext db, UserRegistrationDto userDto) =>
+        app.MapPost("/api/auth/register", async (MyDbContext db, UserRegistrationDto userDto) =>
         {
             // Validation
             var validationResults = new List<ValidationResult>();
@@ -44,7 +44,7 @@ public static class AuthEndpoints
             await db.Users.AddAsync(user);
             await db.SaveChangesAsync();
 
-            return Results.Created($"/users/{user.UserId}", user);
+            return Results.Created($"/api/users/{user.UserId}", user);
         })
         .WithName("RegisterUser")
         .WithDescription("Registers/Creates a new user.")
@@ -54,7 +54,7 @@ public static class AuthEndpoints
         .WithOpenApi();
 
         // Login user
-        app.MapPost("/auth/login", async (MyDbContext db, UserLoginDto userDto) =>
+        app.MapPost("/api/auth/login", async (MyDbContext db, UserLoginDto userDto) =>
         {
             var user = await db.Users
                         .FirstOrDefaultAsync(u => u.Email == userDto.Email);
@@ -77,7 +77,7 @@ public static class AuthEndpoints
         .WithOpenApi();
 
         // Refresh token
-        app.MapPost("/auth/refresh", async (MyDbContext db, RefreshTokenDto refreshTokenDto) =>
+        app.MapPost("/api/auth/refresh", async (MyDbContext db, RefreshTokenDto refreshTokenDto) =>
         {
             var refreshToken = await db.RefreshTokens
                 .FirstOrDefaultAsync(rt => rt.RefreshTokenId == refreshTokenDto.RefreshTokenId);
@@ -102,7 +102,7 @@ public static class AuthEndpoints
         .WithOpenApi();
 
         // Create admin user
-        app.MapPost("/auth/createadmin", async (MyDbContext db, AdminRegistrationDto adminDto) =>
+        app.MapPost("/api/auth/createadmin", async (MyDbContext db, AdminRegistrationDto adminDto) =>
         {
             // Validation
             var validationResults = new List<ValidationResult>();
@@ -139,7 +139,7 @@ public static class AuthEndpoints
             await db.Users.AddAsync(user);
             await db.SaveChangesAsync();
 
-            return Results.Created($"/users/{user.UserId}", user);
+            return Results.Created($"/api/users/{user.UserId}", user);
         })
         .WithName("CreateAdminUser")
         .WithDescription("Creates a new admin user.")

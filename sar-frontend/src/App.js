@@ -1,39 +1,55 @@
 import React from "react";
-import { Route, HashRouter, Router, Routes } from "react-router-dom";
+import { Route, HashRouter, Routes } from "react-router-dom";
 
+import { AuthProvider } from "./utils/AuthContext";
 import PrivateRoute from "./utils/PrivateRoute";
-import Login from "./content_pages/auth/Login";
-import Register from "./content_pages/auth/Register";
-import Home from "./content_pages/Home";
-import NewSession from "./content_pages/session/NewSession";
-import CreateSession from "./content_pages/session/CreateSession";
-import Header from "./content_pages/Header";
+
+import SessionManager from "./pages/session/SessionManager";
+import GameSession from "./pages/session/GameSession";
+import Header from "./content_pages/layout/Header";
+import Footer from "./content_pages/layout/Footer";
+import PCForm from "content_pages/forms/PCForm";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
+import Home from "./pages/Home";
+import "./App.css";
 
 const App = () => {
   return (
-    <HashRouter>
-      <div className="App">
-        <h1>Scrolls and Rolls</h1>
+    <AuthProvider>
+      <HashRouter>
+          <Header />
+          <div className="App">
+            <Routes>
+              {/* Public Routes */}
+              <Route path="/" element={<Login />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              {/* End Public Routes */}
 
-        <Header />
-
-        <div className="content">
-          <Routes>
-            {/* Public Routes */}
-            <Route path="/" element={<Login />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            {/* End Public Routes */}
-
-            {/* Private Routes */}
-            <Route path="/home"
-              element={<PrivateRoute element={<Home />} />}
-            />
-            {/* End Private Routes */}
-          </Routes>
-        </div>
-      </div>
-    </HashRouter>
+              {/* Private Routes */}
+              <Route 
+                path="/home"
+                element={<PrivateRoute element={<Home />} />}
+              />
+              <Route 
+                path="/session/create-character/:sessionId"
+                element={<PrivateRoute element={<PCForm />} roles={["Player"]} />}
+              />
+              <Route 
+                path="/session/session-manager" 
+                element={<PrivateRoute element={<SessionManager />} roles={["GameMaster"]} />} 
+              />
+              <Route 
+                path="/session/game/:sessionId" 
+                element={<PrivateRoute element={<GameSession />} roles={["GameMaster", "Player"]} />} 
+              />
+              {/* End Private Routes */}
+            </Routes>
+          </div>
+        <Footer />
+      </HashRouter>
+    </AuthProvider>
   );
 };
 

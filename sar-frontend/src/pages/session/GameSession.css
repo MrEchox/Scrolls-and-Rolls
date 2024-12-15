@@ -1,0 +1,29 @@
+/* GameSession CSS */
+.session {
+  display: flex;
+  align-items: flex-start; /* Align them to the top */
+  gap: 20px; /* Add space between the chatboxes */
+  padding: 20px; /* Optional: for some padding around the content */
+}
+
+.chat-section {
+  display: flex;
+  gap: 20px;
+  flex: 1; /* Allow the chat section to grow and fill the space */
+}
+
+.player-chat-box,
+.story-chat-box {
+  flex: 1; /* Allow chatboxes to grow and take equal space */
+  width: 100%; /* Stretch to fill available space */
+  height: 400px; /* Fixed height for uniformity */
+  box-sizing: border-box; /* Include padding and border in dimensions */
+  max-width: none; /* Remove max-width restriction */
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-top: 6px solid #ccc;
+}

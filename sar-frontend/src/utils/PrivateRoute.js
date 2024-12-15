@@ -1,21 +1,19 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
+import { Navigate } from "react-router-dom"; 
+import { useAuth } from "./AuthContext"; 
 
-const PrivateRoute = ({ element, ...rest }) => {
-    const token = localStorage.getItem("token");
+const PrivateRoute = ({ element, roles, ...rest }) => {
+    const { isAuthed, userRole } = useAuth();
 
-    if (token) {
-        const decodedToken = jwtDecode(token);
-        const currentTime = Date.now() / 1000;
-
-        if (decodedToken.exp < currentTime) {
-            localStorage.removeItem("token");
-            return <Navigate to="/login" replace />;
-        }
+    if (!isAuthed) {
+        return <Navigate to="/login" />;
     }
 
-    return token ? element : <Navigate to="/login" replace />;
+    if (roles && !roles.includes(userRole)) {
+        return <Navigate to="/home" />;
+    }
+
+    return element; 
 };
 
 export default PrivateRoute;

@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {NavLink} from "react-router-dom";
+
 import { register } from "../../utils/ApiService";
 
 const Register = () => {
@@ -76,7 +77,7 @@ const Register = () => {
         }
         
         try {
-            const response = await register(email, password, role, username);
+            await register(email, password, role, username);
             console.log("Registration successful!");
             window.location.hash = "/login";
         }

@@ -4,12 +4,12 @@ using System.Text.Json.Serialization;
 public class Item
 {
     public Guid ItemId { get; set; }
+
     [Required]
     [StringLength(20, MinimumLength = 3, ErrorMessage = "Item name must be between 3 and 20 characters.")]
     public string Name { get; set; }
     [Required]
-    [StringLength(500, ErrorMessage = "Item name must be between 3 and 20 characters.")]
-
+    [StringLength(500, MinimumLength = 3, ErrorMessage = "Item description must be between 3 and 20 characters.")]
     public string Description { get; set; }
 
     // Modifiers
