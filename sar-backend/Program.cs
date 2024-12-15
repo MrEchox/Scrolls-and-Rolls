@@ -10,8 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<DiceService>();
 
-//var connectionString = Environment.GetEnvironmentVariable("SARDefaultConnection");
-var connectionString = "Server=tcp:sarsqldb.database.windows.net,1433;Initial Catalog=ScrollsAndRollsDB;Persist Security Info=False;User ID=saradmin;Password=Scr0lling!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+var connectionString = Environment.GetEnvironmentVariable("SARDefaultConnection");
 
 if (string.IsNullOrEmpty(connectionString))
 {

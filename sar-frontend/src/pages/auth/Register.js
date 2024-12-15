@@ -134,15 +134,14 @@ const Register = () => {
                     />
                 </div>
                 <div>
-                    <label>Select role:</label>
-                    <select name="role" onChange={handleInputChange} value={role} required>
+                    <label>Select role:   </label>
+                    <select className="role-drop" name="role" onChange={handleInputChange} value={role} required>
                     <option value=""></option>
                     <option value="Player">Player</option>
                     <option value="GameMaster">Game Master</option>
                     </select>
                 </div>
                 <button type='submit'>Register</button>
-                <p>Already have an account? <NavLink to="/login">Login</NavLink></p>
             </form>
         </div>
     );
