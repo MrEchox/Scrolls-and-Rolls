@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = "https://localhost:7224";
+const API_BASE_URL = "https://scrolls-and-rolls-ecedevcmeudga4h7.polandcentral-01.azurewebsites.net";
 
 // Authorization api calls -----------------------------------------------------
 export const login = async (email, password) => {
